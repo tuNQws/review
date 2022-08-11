@@ -5,99 +5,123 @@
 
 using namespace std;
 
-struct Node{
+struct Node
+{
     int data;
-    Node* pNext;
+    Node *pNext;
 };
 
-struct SinglyLinkedList{
-    Node* pHead;
-    Node* pTail;
+struct SinglyLinkedList
+{
+    Node *pHead;
+    Node *pTail;
 };
 
-Node* CreateNode(int data){
-    Node* p = new Node();
+Node *CreateNode(int data)
+{
+    Node *p = new Node();
     p->data = data;
     p->pNext = nullptr;
     return p;
 }
 
-void CreateList(SinglyLinkedList& l){
+void CreateList(SinglyLinkedList &l)
+{
     l.pHead = nullptr;
     l.pTail = nullptr;
 }
 
-void Show(SinglyLinkedList l){
-    if (l.pHead != nullptr){
-        for (Node* p = l.pHead; p != nullptr; p = p->pNext){
+void Show(SinglyLinkedList l)
+{
+    if (l.pHead != nullptr)
+    {
+        for (Node *p = l.pHead; p != nullptr; p = p->pNext)
+        {
             cout << p->data;
-            if (p != l.pTail){
+            if (p != l.pTail)
+            {
                 cout << " --> ";
             }
         }
         cout << endl;
-    } 
+    }
     else
         cout << "Empty\n";
 }
 
-void addHead(Node* p, SinglyLinkedList& l){
-    if (l.pHead == nullptr){
+void addHead(Node *p, SinglyLinkedList &l)
+{
+    if (l.pHead == nullptr)
+    {
         l.pHead = l.pTail = p;
-    }   else{
+    }
+    else
+    {
         p->pNext = l.pHead;
         l.pHead = p;
     }
 }
 
-void addTail(Node* p, SinglyLinkedList& l){
-    if (l.pHead == nullptr){
+void addTail(Node *p, SinglyLinkedList &l)
+{
+    if (l.pHead == nullptr)
+    {
         l.pHead = l.pTail = p;
-    }   else{
+    }
+    else
+    {
         l.pTail->pNext = p;
         l.pTail = p;
     }
 }
 
-void deleteNode(Node* p, SinglyLinkedList& l){
-    if (p == l.pHead){
-        Node* q = l.pHead->pNext;
-        p->pNext = nullptr;
+void deleteNode(Node *p, SinglyLinkedList &l)
+{
+    if (p == l.pHead)
+    {
+        Node *q = l.pHead->pNext;
         delete p;
+        p = nullptr;
         l.pHead = q;
-    } else if (p == l.pTail){
-        Node* preTail = new Node();
-        for (Node* i = l.pHead; i != nullptr; i = i->pNext){
-            if (i->pNext == l.pTail){
+    }
+    else if (p == l.pTail)
+    {
+        Node *preTail = new Node();
+        for (Node *i = l.pHead; i != nullptr; i = i->pNext)
+        {
+            if (i->pNext == l.pTail)
+            {
                 preTail = i;
             }
         }
-        Node* q = l.pTail;
+        Node *q = l.pTail;
         preTail->pNext = nullptr;
         delete q;
         l.pTail = preTail;
     }
 }
 
-int random(){
+int random()
+{
     srand(time(NULL));
-	int res = rand() % 100;
-	return res;
+    int res = rand() % 100;
+    return res;
 }
 
-int main(){
+int main()
+{
     int choice;
     SinglyLinkedList l;
     CreateList(l);
 
-    while (true){
+    while (true)
+    {
         Show(l);
         cout << "0. End \n";
         cout << "1. Add head randomly \n";
         cout << "2. Add tail randomly \n";
         cout << "3. Delete head \n";
         cout << "4. Delete tail \n";
-        cout << "5. Sort \n";
         cout << " ====================== \n";
         cout << "Your choice: ";
         cin >> choice;
