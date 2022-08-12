@@ -56,7 +56,7 @@ int random()
     return res;
 }
 
-void enqueue(Node* p, Stack& s){
+void enstack(Node* p, Stack& s){
     if (isEmpty(s)){
         s.top = p;
     } else{
@@ -66,7 +66,7 @@ void enqueue(Node* p, Stack& s){
     }
 }
 
-void dequeue(Stack& s, Node*& p){
+void destack(Stack& s, Node*& p){
     if (!isEmpty(s)){
         p = s.top;
         s.top = s.top->pNext;
@@ -94,8 +94,8 @@ int main()
     {
         Show(s);
         cout << "0. End \n";
-        cout << "1. Enqueue randomly \n";
-        cout << "2. Dequeue \n";
+        cout << "1. Enstack randomly \n";
+        cout << "2. Destack \n";
         cout << "3. Search for \"a\" \n";
         cout << " ====================== \n";
         cout << "Your choice: ";
@@ -108,10 +108,10 @@ int main()
         case 0:
             return 0;
         case 1:
-            enqueue(CreateNode(random()), s);
+            enstack(CreateNode(random()), s);
             break;
         case 2:
-            dequeue(s, p);
+            destack(s, p);
             break;
         case 3:
             cout<< "input a: ";
